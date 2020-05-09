@@ -10,6 +10,14 @@ app.use(cors());
 
 const repositories = [];
 
+function logRoute(req, res, next) {
+  const {method, url} = req
+  console.log(`[${method}]${url}`)
+  next()
+}
+
+app.use(logRoute)
+
 // Middlewares
 function validateUuid(request, response, next) {
   const { id } = request.params;
